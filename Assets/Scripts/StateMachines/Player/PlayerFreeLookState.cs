@@ -32,7 +32,7 @@ public class PlayerFreeLookState : PlayerBaseState
     }
     private void MovePlayer(Vector3 movement, float deltaTime)
     {
-        _stateMachine.CharacterController.Move(movement * _stateMachine.FreeLookMovementSpeed * deltaTime);
+        Move(movement * _stateMachine.FreeLookMovementSpeed, deltaTime);
         if (_stateMachine.InputReader.MovementValue == Vector2.zero)
         {
             _stateMachine.Animator.SetFloat(FreeLookHash, 0, AnimatorDampTime, deltaTime);
