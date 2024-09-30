@@ -1604,6 +1604,10 @@ MonoBehaviour:
   <RotationDamping>k__BackingField: 10
   <Targeter>k__BackingField: {fileID: 3013412589073591850}
   <ForceReceiver>k__BackingField: {fileID: 9139744739353037510}
+  <Attacks>k__BackingField:
+  - <AnimationName>k__BackingField: Attack1
+  - <AnimationName>k__BackingField: Attack2
+  - <AnimationName>k__BackingField: Attack3
 --- !u!114 &1524518409332892032
 MonoBehaviour:
   m_ObjectHideFlags: 0
