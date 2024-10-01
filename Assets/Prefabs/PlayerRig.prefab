@@ -472,7 +472,7 @@ MonoBehaviour:
   m_XAxis:
     Value: 0
     m_SpeedMode: 0
-    m_MaxSpeed: 200
+    m_MaxSpeed: 100
     m_AccelTime: 0.1
     m_DecelTime: 0.1
     m_InputAxisName: 
@@ -1166,11 +1166,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7255086453683967642}
     m_Modifications:
-    - target: {fileID: 3013412589073591850, guid: 6224b70e5418cdf408b985da4d5dee5a,
-        type: 3}
-      propertyPath: _cinemachineTargetGroup
-      value: 
-      objectReference: {fileID: 2872423573013704603}
     - target: {fileID: 3992568384151849616, guid: 6224b70e5418cdf408b985da4d5dee5a,
         type: 3}
       propertyPath: m_LocalPosition.x
