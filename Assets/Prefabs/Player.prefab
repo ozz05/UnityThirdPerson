@@ -1557,6 +1557,7 @@ GameObject:
   - component: {fileID: 7534751789440751393}
   - component: {fileID: 9139744739353037510}
   - component: {fileID: 1915751535228517218}
+  - component: {fileID: 5255991435243933626}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1711,6 +1712,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _weaponLogic: {fileID: 5782556100833926077}
+--- !u!114 &5255991435243933626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4686250358857132898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acd0c1e754358f54aa0734b4f7700d8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  _maxHealth: 100
 --- !u!1 &4870929153645043120
 GameObject:
   m_ObjectHideFlags: 0
@@ -2231,6 +2248,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8346111701120296515}
   - component: {fileID: 2532094160382766748}
+  - component: {fileID: 6757824760319584540}
   m_Layer: 0
   m_Name: WeaponLogic
   m_TagString: Untagged
@@ -2276,6 +2294,20 @@ CapsuleCollider:
   m_Height: 0.68
   m_Direction: 0
   m_Center: {x: -0.57, y: 0.22, z: -0.02}
+--- !u!114 &6757824760319584540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5782556100833926077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41db9a6b6c3ed264aa540396044ad9f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 15
+  _myCollider: {fileID: 0}
 --- !u!1 &5832155068550577013
 GameObject:
   m_ObjectHideFlags: 0
