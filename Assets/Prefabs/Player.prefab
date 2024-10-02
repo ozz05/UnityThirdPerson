@@ -1574,7 +1574,7 @@ Transform:
   m_GameObject: {fileID: 4686250358857132898}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.02, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1607,6 +1607,7 @@ MonoBehaviour:
   <RotationDamping>k__BackingField: 10
   <Targeter>k__BackingField: {fileID: 3013412589073591850}
   <ForceReceiver>k__BackingField: {fileID: 9139744739353037510}
+  <WeaponDamage>k__BackingField: {fileID: 6757824760319584540}
   <Attacks>k__BackingField:
   - <AnimationName>k__BackingField: Attack1
     <TransitionTime>k__BackingField: 0.1
@@ -1614,18 +1615,21 @@ MonoBehaviour:
     <ComboAttackTime>k__BackingField: 0.6
     <ForceTime>k__BackingField: 0.35
     <Force>k__BackingField: 10
+    <Damage>k__BackingField: 10
   - <AnimationName>k__BackingField: Attack2
     <TransitionTime>k__BackingField: 0.1
     <ComboStateIndex>k__BackingField: 2
     <ComboAttackTime>k__BackingField: 0.5
     <ForceTime>k__BackingField: 0.35
     <Force>k__BackingField: 15
+    <Damage>k__BackingField: 15
   - <AnimationName>k__BackingField: Attack3
     <TransitionTime>k__BackingField: 0.2
     <ComboStateIndex>k__BackingField: -1
     <ComboAttackTime>k__BackingField: 0
     <ForceTime>k__BackingField: 0.35
     <Force>k__BackingField: 20
+    <Damage>k__BackingField: 20
 --- !u!114 &1524518409332892032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1684,7 +1688,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.03
   m_MinMoveDistance: 0
-  m_Center: {x: 0, y: 0.99, z: 0}
+  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!114 &9139744739353037510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1698,7 +1702,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _controller: {fileID: 7534751789440751393}
-  _drag: 1
+  _drag: 0.1
 --- !u!114 &1915751535228517218
 MonoBehaviour:
   m_ObjectHideFlags: 0

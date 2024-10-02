@@ -8,7 +8,6 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
     public event Action JumpEvent;
     public event Action DodgeEvent;
     public event Action TargetEvent;
-    public event Action CancelEvent;
     private Controls controls;
     private void Start()
     {
@@ -42,10 +41,6 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
     public void OnTarget(InputAction.CallbackContext context)
     {
         TargetEvent?.Invoke();
-    }
-    public void OnCancel(InputAction.CallbackContext context)
-    {
-        CancelEvent?.Invoke();
     }
 
     public void OnAttack(InputAction.CallbackContext context)

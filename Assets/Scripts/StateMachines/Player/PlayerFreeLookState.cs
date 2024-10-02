@@ -7,12 +7,13 @@ public class PlayerFreeLookState : PlayerBaseState
     private readonly int FreeLookHash = Animator.StringToHash("FreeLookSpeed");
     private readonly int FreeLookBlendTreeHash = Animator.StringToHash("FreeLookBlendTree");
     public PlayerFreeLookState(PlayerStateMachine playerStateMachine) : base(playerStateMachine) {}
-    private const float AnimatorDampTime = 0.1f; 
+    private const float AnimatorDampTime = 0.1f;
+    private const float CrossFadeDuration = 0.2f; 
 
     public override void Enter()
     {
         _stateMachine.InputReader.TargetEvent += OnTarget;
-        _stateMachine.Animator.Play(FreeLookBlendTreeHash);
+        _stateMachine.Animator.CrossFadeInFixedTime(FreeLookBlendTreeHash, CrossFadeDuration);
     }
     public override void Tick(float deltaTime)
     {
@@ -47,6 +48,7 @@ public class PlayerFreeLookState : PlayerBaseState
     }
     private void FaceMovementDirection(Vector3 movement, float deltaTime)
     {
+        if(movement == Vector3.zero) return;
         _stateMachine.transform.rotation = Quaternion.Lerp(
             _stateMachine.transform.rotation,
             Quaternion.LookRotation(movement),

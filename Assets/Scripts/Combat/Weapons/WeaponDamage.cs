@@ -20,7 +20,11 @@ public class WeaponDamage : MonoBehaviour
             health.TakeDamage(_damage);
         }
     }
-    public void ClearDamageList()
+    public void SetWeaponDamage(int damage)
+    {
+        _damage = damage;
+    }
+    private void ClearDamageList()
     {
         _colliders.Clear();
     }
