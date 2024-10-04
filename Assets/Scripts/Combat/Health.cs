@@ -17,6 +17,7 @@ public class Health : MonoBehaviour
     {
         if (_currentHealth == 0){return;}
         _currentHealth = Mathf.Max(_currentHealth - damage, 0);
+        Debug.LogWarning("Health: " + _currentHealth);
         if (_currentHealth == 0)
         {
             HandleDeath();
