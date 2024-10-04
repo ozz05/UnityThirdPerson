@@ -11,6 +11,7 @@ public class EnemyStateMachine : StateMachine
     [field: SerializeField] public ForceReceiver ForceReceiver {get; private set;}
     [field: SerializeField] public NavMeshAgent NavMeshAgent {get; private set;}
     [field: SerializeField] public Attack[] Attacks {get; private set;}
+    [field: SerializeField] public WeaponDamage Weapon {get; private set;}
 
     [field: SerializeField] public float PlayerChaseRange {get; private set;}
     [field: SerializeField] public int MovementSpeed {get; private set;}

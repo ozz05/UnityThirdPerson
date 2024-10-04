@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyAttackingState : EnemyBaseState
 {
     public readonly int AttackHash = Animator.StringToHash("Attack");
-    private const string ATTACK_ANIMATION_TAG = "Attck";
+    private const string ATTACK_ANIMATION_TAG = "Attack";
     private Attack _attack;
     private const float AnimatorDampTime = 0.1f;
     private const float CrossFadeDuration = 0.2f;
@@ -14,6 +14,7 @@ public class EnemyAttackingState : EnemyBaseState
     {
         if (attackIndex >= _stateMachine.Attacks.Length) return;
         _attack = _stateMachine.Attacks[attackIndex];
+        _stateMachine.Weapon.SetWeaponDamage(_attack.Damage);
     }
 
     public override void Enter()
@@ -31,7 +32,6 @@ public class EnemyAttackingState : EnemyBaseState
         }
         else
         {
-            Debug.LogWarning("Else " + normalizedTime);
             if (normalizedTime < 1)
             {
                 if (normalizedTime >= _attack.ForceTime)
@@ -41,16 +41,12 @@ public class EnemyAttackingState : EnemyBaseState
             }
             else
             {
-                Debug.LogWarning("Transition");
                 _stateMachine.SwitchState(new EnemyAttackingState(_stateMachine, Mathf.Max(_attack.ComboStateIndex, 0)));
             }
         }
     }
 
-    public override void Exit()
-    {
-        
-    }
+    public override void Exit(){}
 
     private float GetNormalizedTime()
     {
