@@ -1762,7 +1762,7 @@ Transform:
   m_GameObject: {fileID: 4363939893033166960}
   serializedVersion: 2
   m_LocalRotation: {x: 0.70089024, y: 0.09355629, z: -0.09355632, w: 0.7008904}
-  m_LocalPosition: {x: 0.8539999, y: 1.3339999, z: 0.42099988}
+  m_LocalPosition: {x: 0.826, y: 1.334, z: 0.318}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1781,7 +1781,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 15
-  _myCollider: {fileID: 4105833844578516813}
+  _knockback: 0
+  _myCollider: {fileID: 8984454255978256506}
 --- !u!136 &4105833844578516813
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1801,8 +1802,8 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.1
-  m_Height: 0.8
+  m_Radius: 0.2
+  m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &2988095107454734401
@@ -2445,8 +2446,9 @@ MonoBehaviour:
   <Animator>k__BackingField: {fileID: 4991731478915468160}
   <CharacterController>k__BackingField: {fileID: 8984454255978256506}
   <Player>k__BackingField: {fileID: 0}
+  <Health>k__BackingField: {fileID: 517276621842989258}
   <ForceReceiver>k__BackingField: {fileID: 4353583613249763379}
-  <NavMeshAgent>k__BackingField: {fileID: 7617904961376773054}
+  <Agent>k__BackingField: {fileID: 7617904961376773054}
   <Attacks>k__BackingField:
   - <AnimationName>k__BackingField: Attack
     <TransitionTime>k__BackingField: 0.1
@@ -2455,10 +2457,13 @@ MonoBehaviour:
     <ForceTime>k__BackingField: 0.35
     <Force>k__BackingField: 20
     <Damage>k__BackingField: 20
+    <Knockback>k__BackingField: 10
   <Weapon>k__BackingField: {fileID: 8112035434880884113}
+  <Target>k__BackingField: {fileID: 4255519805612499691}
   <PlayerChaseRange>k__BackingField: 10
   <MovementSpeed>k__BackingField: 3
   <AttackingRange>k__BackingField: 1.5
+  <ImpactDuration>k__BackingField: 0.7
 --- !u!114 &4255519805612499691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2483,9 +2488,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acd0c1e754358f54aa0734b4f7700d8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnDeath:
-    m_PersistentCalls:
-      m_Calls: []
   _maxHealth: 100
 --- !u!114 &4353583613249763379
 MonoBehaviour:
@@ -2500,6 +2502,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _controller: {fileID: 8984454255978256506}
+  _agent: {fileID: 7617904961376773054}
   _drag: 0.3
 --- !u!114 &203779224069436598
 MonoBehaviour:

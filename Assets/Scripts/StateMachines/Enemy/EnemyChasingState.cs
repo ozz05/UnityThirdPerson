@@ -34,15 +34,20 @@ public class EnemyChasingState : EnemyBaseState
 
     public override void Exit()
     {
-        _stateMachine.NavMeshAgent.ResetPath();
-        _stateMachine.NavMeshAgent.velocity = Vector3.zero;
+        if (_stateMachine.Agent.isOnNavMesh)
+        {
+            _stateMachine.Agent.ResetPath();
+        }
+        _stateMachine.Agent.velocity = Vector3.zero;
     }
 
     private void MoveToPlayer(float deltaTime)
     {
-        _stateMachine.NavMeshAgent.destination = _stateMachine.Player.transform.position;
-
-        Move(_stateMachine.NavMeshAgent.desiredVelocity.normalized * _stateMachine.MovementSpeed, deltaTime);
-        _stateMachine.NavMeshAgent.velocity = _stateMachine.CharacterController.velocity;
+        if (_stateMachine.Agent.isOnNavMesh)
+        {
+            _stateMachine.Agent.destination = _stateMachine.Player.transform.position;
+            Move(_stateMachine.Agent.desiredVelocity.normalized * _stateMachine.MovementSpeed, deltaTime);
+        }
+        _stateMachine.Agent.velocity = _stateMachine.CharacterController.velocity;
     }
 }

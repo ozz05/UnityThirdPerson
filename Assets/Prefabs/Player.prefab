@@ -1602,12 +1602,13 @@ MonoBehaviour:
   <InputReader>k__BackingField: {fileID: 1524518409332892032}
   <CharacterController>k__BackingField: {fileID: 7534751789440751393}
   <Animator>k__BackingField: {fileID: 2451914251823339351}
+  <Health>k__BackingField: {fileID: 5255991435243933626}
   <FreeLookMovementSpeed>k__BackingField: 6
   <TargetingMovementSpeed>k__BackingField: 5
   <RotationDamping>k__BackingField: 10
   <Targeter>k__BackingField: {fileID: 3013412589073591850}
   <ForceReceiver>k__BackingField: {fileID: 9139744739353037510}
-  <WeaponDamage>k__BackingField: {fileID: 6757824760319584540}
+  <Weapon>k__BackingField: {fileID: 6757824760319584540}
   <Attacks>k__BackingField:
   - <AnimationName>k__BackingField: Attack1
     <TransitionTime>k__BackingField: 0.1
@@ -1616,6 +1617,7 @@ MonoBehaviour:
     <ForceTime>k__BackingField: 0.35
     <Force>k__BackingField: 10
     <Damage>k__BackingField: 10
+    <Knockback>k__BackingField: 5
   - <AnimationName>k__BackingField: Attack2
     <TransitionTime>k__BackingField: 0.1
     <ComboStateIndex>k__BackingField: 2
@@ -1623,6 +1625,7 @@ MonoBehaviour:
     <ForceTime>k__BackingField: 0.35
     <Force>k__BackingField: 15
     <Damage>k__BackingField: 15
+    <Knockback>k__BackingField: 10
   - <AnimationName>k__BackingField: Attack3
     <TransitionTime>k__BackingField: 0.2
     <ComboStateIndex>k__BackingField: -1
@@ -1630,6 +1633,8 @@ MonoBehaviour:
     <ForceTime>k__BackingField: 0.35
     <Force>k__BackingField: 20
     <Damage>k__BackingField: 20
+    <Knockback>k__BackingField: 15
+  <ImpactDuration>k__BackingField: 0.7
 --- !u!114 &1524518409332892032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1702,6 +1707,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _controller: {fileID: 7534751789440751393}
+  _agent: {fileID: 0}
   _drag: 0.1
 --- !u!114 &1915751535228517218
 MonoBehaviour:
@@ -1728,9 +1734,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acd0c1e754358f54aa0734b4f7700d8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnDeath:
-    m_PersistentCalls:
-      m_Calls: []
   _maxHealth: 100
 --- !u!1 &4870929153645043120
 GameObject:
@@ -2260,7 +2263,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8346111701120296515
 Transform:
   m_ObjectHideFlags: 0
@@ -2295,8 +2298,8 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.03
-  m_Height: 0.68
+  m_Radius: 0.1
+  m_Height: 0.9
   m_Direction: 0
   m_Center: {x: -0.57, y: 0.22, z: -0.02}
 --- !u!114 &6757824760319584540
@@ -2312,6 +2315,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 15
+  _knockback: 0
   _myCollider: {fileID: 7534751789440751393}
 --- !u!54 &3597050085436146772
 Rigidbody:

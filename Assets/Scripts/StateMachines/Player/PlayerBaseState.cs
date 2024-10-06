@@ -20,6 +20,18 @@ public abstract class PlayerBaseState : State
         Move(Vector3.zero, deltaTime);
     }
 
+    protected void ReturnToLocomotion()
+    {
+        if (_stateMachine.Targeter.CurrentTarget == null)
+        {
+            _stateMachine.SwitchState(new PlayerFreeLookState(_stateMachine));
+        }
+        else
+        {
+            _stateMachine.SwitchState(new PlayerTargetingState(_stateMachine));
+        }
+    }
+
     protected void FaceTarget()
     {
         if (_stateMachine.Targeter.CurrentTarget == null) return;
