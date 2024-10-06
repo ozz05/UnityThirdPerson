@@ -8,9 +8,7 @@ public class EnemyImpactState : EnemyBaseState
     private const float CrossFadeDuration = 0.1f;
     private float _duration = 0;
 
-    public EnemyImpactState(EnemyStateMachine enemyStateMachine) : base(enemyStateMachine)
-    {
-    }
+    public EnemyImpactState(EnemyStateMachine enemyStateMachine) : base(enemyStateMachine){}
 
     public override void Enter()
     {

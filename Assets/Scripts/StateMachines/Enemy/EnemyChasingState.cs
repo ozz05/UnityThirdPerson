@@ -17,7 +17,7 @@ public class EnemyChasingState : EnemyBaseState
 
     public override void Tick(float deltaTime)
     {
-        MoveToPlayer(deltaTime);
+        FacePlayer();
         if (!IsInChaseRage())
         {
             _stateMachine.SwitchState(new EnemyIdleState(_stateMachine));
@@ -28,8 +28,9 @@ public class EnemyChasingState : EnemyBaseState
             _stateMachine.SwitchState( new EnemyAttackingState(_stateMachine, 0));
             return;
         }
+        
+        MoveToPlayer(deltaTime);
         _stateMachine.Animator.SetFloat(SpeedHash, 1, AnimatorDampTime, deltaTime);
-        FacePlayer();
     }
 
     public override void Exit()

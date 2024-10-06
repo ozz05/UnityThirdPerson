@@ -2371,11 +2371,6 @@ PrefabInstance:
       propertyPath: m_ChildCameras.Array.size
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4431171312381795023, guid: 30a0fb918cab07541bb0561c864720cb,
-        type: 3}
-      propertyPath: <ImpactDuration>k__BackingField
-      value: 0.7
-      objectReference: {fileID: 0}
     - target: {fileID: 7255086453683967642, guid: 30a0fb918cab07541bb0561c864720cb,
         type: 3}
       propertyPath: m_LocalPosition.x
