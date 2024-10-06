@@ -23,12 +23,13 @@ public class EnemyChasingState : EnemyBaseState
             _stateMachine.SwitchState(new EnemyIdleState(_stateMachine));
             return;
         }
-        else if(IsInAttackingRange())
+        
+        if(IsInAttackingRange())
         {
             _stateMachine.SwitchState( new EnemyAttackingState(_stateMachine, 0));
             return;
         }
-        
+
         MoveToPlayer(deltaTime);
         _stateMachine.Animator.SetFloat(SpeedHash, 1, AnimatorDampTime, deltaTime);
     }

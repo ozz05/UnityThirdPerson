@@ -8,7 +8,6 @@ public class PlayerAttackingState : PlayerBaseState
 {
     private Attack _attack;
     private const string ATTACK_ANIMATION_TAG = "Attack";
-    private float _previousFrameTime;
     private bool _forceApplied; 
     public PlayerAttackingState(PlayerStateMachine playerStateMachine, int attackIndex) : base(playerStateMachine)
     {
@@ -24,9 +23,8 @@ public class PlayerAttackingState : PlayerBaseState
 
     public override void Tick(float deltaTime)
     {
-        Move(deltaTime);
-        FaceTarget();
-        float normalizedTime = GetNormalizedTime(_stateMachine.Animator);
+        
+        float normalizedTime = GetNormalizedTime(_stateMachine.Animator, ATTACK_ANIMATION_TAG);
         if (normalizedTime < 1f)
         {
             if (normalizedTime >= _attack.ForceTime)
@@ -42,7 +40,8 @@ public class PlayerAttackingState : PlayerBaseState
         {
             ReturnToLocomotion();
         }
-        _previousFrameTime = normalizedTime;
+        Move(deltaTime);
+        FaceTarget();
     }
 
     public override void Exit()

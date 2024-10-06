@@ -6,13 +6,14 @@ public class PlayerFreeLookState : PlayerBaseState
 {
     private readonly int FreeLookHash = Animator.StringToHash("FreeLookSpeed");
     private readonly int FreeLookBlendTreeHash = Animator.StringToHash("FreeLookBlendTree");
-    public PlayerFreeLookState(PlayerStateMachine playerStateMachine) : base(playerStateMachine) {}
     private const float AnimatorDampTime = 0.1f;
-    private const float CrossFadeDuration = 0.2f; 
+    private const float CrossFadeDuration = 0.2f;
+    public PlayerFreeLookState(PlayerStateMachine playerStateMachine) : base(playerStateMachine) {}
 
     public override void Enter()
     {
         _stateMachine.InputReader.TargetEvent += OnTarget;
+        _stateMachine.InputReader.DodgeEvent += OnDodge;
         _stateMachine.Animator.CrossFadeInFixedTime(FreeLookBlendTreeHash, CrossFadeDuration);
     }
     public override void Tick(float deltaTime)
@@ -30,6 +31,13 @@ public class PlayerFreeLookState : PlayerBaseState
     public override void Exit()
     {
         _stateMachine.InputReader.TargetEvent -= OnTarget;
+        _stateMachine.InputReader.DodgeEvent -= OnDodge;
+    }
+    private void OnDodge()
+    {
+        if (Time.time - _stateMachine.PreviousDodgeTime < _stateMachine.DodgeCooldownTime) return;
+        _stateMachine.SetDodgeTime(Time.time);
+        _stateMachine.SwitchState(new PlayerDodgingState(_stateMachine, _stateMachine.transform.forward));
     }
     private void OnTarget()
     {

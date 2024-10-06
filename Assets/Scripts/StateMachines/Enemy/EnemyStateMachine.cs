@@ -7,7 +7,7 @@ public class EnemyStateMachine : StateMachine
 {
     [field: SerializeField] public Animator Animator {get; private set;}
     [field: SerializeField] public CharacterController CharacterController {get; private set;}
-    [field: SerializeField] public GameObject Player {get; private set;}
+    [field: SerializeField] public Health Player {get; private set;}
     [field: SerializeField] public Health Health {get; private set;}
     [field: SerializeField] public ForceReceiver ForceReceiver {get; private set;}
     [field: SerializeField] public NavMeshAgent Agent {get; private set;}
@@ -43,7 +43,11 @@ public class EnemyStateMachine : StateMachine
     }
     private void Start() {
 
-        Player = GameObject.FindGameObjectWithTag("Player");
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player.TryGetComponent<Health>(out Health health))
+        {
+            Player = health;
+        }
         Agent.updatePosition = false;
         Agent.updateRotation = false;
         SwitchState(new EnemyIdleState(this));

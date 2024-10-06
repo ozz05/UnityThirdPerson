@@ -19,14 +19,24 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public Ragdoll Ragdoll {get; private set;}
     [field: SerializeField] public Attack[] Attacks {get; private set;}
     public Transform MainCameraTransform { get; private set;}
+    [field: SerializeField] public float JumpHeight {get; private set;}
+    [field: SerializeField] public float JumpSpeed {get; private set;}
     [field: SerializeField] public float ImpactDuration {get; private set;} = 1f;
+    [field: SerializeField] public float DodgeDuration {get; private set;}
+    [field: SerializeField] public float DodgeDistance {get; private set;}
+    [field: SerializeField] public float DodgeCooldownTime {get; private set;} = 2f;
+    [field: SerializeField] public float PreviousDodgeTime {get; private set;}
 
     private void OnEnable()
     {
+        PreviousDodgeTime = Time.time - DodgeCooldownTime;
         Health.OnTakeDamage += OnDamageTaken;
         Health.OnDeath += HandleDeath;
     }
-
+    public void SetDodgeTime (float time)
+    {
+        PreviousDodgeTime = time;
+    }
     private void OnDisable()
     {
         Health.OnTakeDamage -= OnDamageTaken;

@@ -12,6 +12,7 @@ public class PlayerTargetingState : PlayerBaseState
     public override void Enter()
     {
         _stateMachine.InputReader.TargetEvent += OnCancel;
+        _stateMachine.InputReader.DodgeEvent += OnDodge;
         _stateMachine.Animator.CrossFadeInFixedTime(TargetingBlendTreeHash, CrossFadeDuration);
     }
 
@@ -20,6 +21,11 @@ public class PlayerTargetingState : PlayerBaseState
         if (_stateMachine.InputReader.IsAttacking)
         {
             _stateMachine.SwitchState(new PlayerAttackingState(_stateMachine, 0));
+            return;
+        }
+        if (_stateMachine.InputReader.IsBlocking)
+        {
+            _stateMachine.SwitchState(new PlayerBlockingState(_stateMachine));
             return;
         }
         if (_stateMachine.Targeter.CurrentTarget == null)
@@ -34,8 +40,14 @@ public class PlayerTargetingState : PlayerBaseState
     public override void Exit()
     {
         _stateMachine.InputReader.TargetEvent -= OnCancel;
+        _stateMachine.InputReader.DodgeEvent -= OnDodge;
     }
-
+    private void OnDodge()
+    {
+        if (Time.time - _stateMachine.PreviousDodgeTime < _stateMachine.DodgeCooldownTime) return;
+        _stateMachine.SetDodgeTime(Time.time);
+        _stateMachine.SwitchState(new PlayerDodgingState(_stateMachine, CalculateMovement()));
+    }
     private void OnCancel()
     {
         _stateMachine.Targeter.Cancel();

@@ -1510,6 +1510,7 @@ Transform:
   - {fileID: 7897141870372818275}
   - {fileID: 8370536396928464541}
   - {fileID: 492456277020211828}
+  - {fileID: 2103720476007077506}
   m_Father: {fileID: 5897378517098023423}
   m_LocalEulerAnglesHint: {x: -10.09732, y: 6.22363, z: -10.864167}
 --- !u!1 &3572347876637965470
@@ -2376,6 +2377,8 @@ MonoBehaviour:
     <Damage>k__BackingField: 20
     <Knockback>k__BackingField: 15
   <ImpactDuration>k__BackingField: 0.7
+  <DodgeDuration>k__BackingField: 0.5
+  <DodgeDistance>k__BackingField: 1.5
 --- !u!114 &1524518409332892032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3425,6 +3428,37 @@ Transform:
   - {fileID: 5975555327983307761}
   m_Father: {fileID: 3940120864450602988}
   m_LocalEulerAnglesHint: {x: 72.192055, y: 17.623669, z: 10.303662}
+--- !u!1 &7029717351446670869
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2103720476007077506}
+  m_Layer: 0
+  m_Name: Shield
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2103720476007077506
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7029717351446670869}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3888403695040446463}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7041880819383271070
 GameObject:
   m_ObjectHideFlags: 0
