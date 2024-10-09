@@ -13,7 +13,7 @@ public class PlayerFreeLookState : PlayerBaseState
     public override void Enter()
     {
         _stateMachine.InputReader.TargetEvent += OnTarget;
-        _stateMachine.InputReader.DodgeEvent += OnDodge;
+        //_stateMachine.InputReader.DodgeEvent += OnDodge;
         _stateMachine.InputReader.JumpEvent += OnJump;
         _stateMachine.Animator.CrossFadeInFixedTime(FreeLookBlendTreeHash, CrossFadeDuration);
     }
@@ -32,7 +32,7 @@ public class PlayerFreeLookState : PlayerBaseState
     public override void Exit()
     {
         _stateMachine.InputReader.TargetEvent -= OnTarget;
-        _stateMachine.InputReader.DodgeEvent -= OnDodge;
+        //_stateMachine.InputReader.DodgeEvent -= OnDodge;
         _stateMachine.InputReader.JumpEvent -= OnJump;
     }
     
@@ -41,12 +41,12 @@ public class PlayerFreeLookState : PlayerBaseState
         if (!_stateMachine.Targeter.SelectTarget()) return;
         _stateMachine.SwitchState(new PlayerTargetingState(_stateMachine));
     }
-    private void OnDodge()
+    /*private void OnDodge()
     {
         if (Time.time - _stateMachine.PreviousDodgeTime < _stateMachine.DodgeCooldownTime) return;
         _stateMachine.SetDodgeTime(Time.time);
         _stateMachine.SwitchState(new PlayerDodgingState(_stateMachine, _stateMachine.transform.forward));
-    }
+    }*/
     private void OnJump()
     {
         if(!_stateMachine.CharacterController.isGrounded) return;

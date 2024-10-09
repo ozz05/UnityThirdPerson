@@ -2377,12 +2377,9 @@ MonoBehaviour:
     <Damage>k__BackingField: 20
     <Knockback>k__BackingField: 15
   <JumpForce>k__BackingField: 4
-  <JumpSpeed>k__BackingField: 0
   <ImpactDuration>k__BackingField: 0.7
-  <DodgeDuration>k__BackingField: 0.5
-  <DodgeDistance>k__BackingField: 1.5
-  <DodgeCooldownTime>k__BackingField: 2
-  <PreviousDodgeTime>k__BackingField: 0
+  <DodgeDuration>k__BackingField: 0.6
+  <DodgeDistance>k__BackingField: 3
 --- !u!114 &1524518409332892032
 MonoBehaviour:
   m_ObjectHideFlags: 0

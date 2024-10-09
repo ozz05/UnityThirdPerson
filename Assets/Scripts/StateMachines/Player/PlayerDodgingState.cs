@@ -4,42 +4,51 @@ using UnityEngine;
 
 public class PlayerDodgingState : PlayerBaseState
 {
-    public readonly int DodgeHash = Animator.StringToHash("Dodge");
+    public readonly int DodgeBlendTreeHash = Animator.StringToHash("DodgeBlendTree");
+    private readonly int DodgeForwardHash = Animator.StringToHash("DodgeForward");
+    private readonly int DodgeRightHash = Animator.StringToHash("DodgeRight");
     private const string DODGE_ANIMATION_TAG = "Dodge";
     private const float CrossFadeDuration = 0.1f;
     private float _dodgeCurrentDuration = 0;
-    private Vector3 _dodgingDirection = Vector3.zero;
+    private Vector2 _dodgingDirection = Vector2.zero;
 
-    public PlayerDodgingState(PlayerStateMachine playerStateMachine, Vector3 dodgingDirection) : base(playerStateMachine)
+    public PlayerDodgingState(PlayerStateMachine playerStateMachine, Vector2 dodgingDirection) : base(playerStateMachine)
     {
         _dodgingDirection = dodgingDirection;
     }
 
     public override void Enter()
     {
-        _stateMachine.Animator.CrossFadeInFixedTime(DodgeHash, CrossFadeDuration);
+        _stateMachine.Animator.SetFloat(DodgeForwardHash, _dodgingDirection.y);
+        _stateMachine.Animator.SetFloat(DodgeRightHash, _dodgingDirection.x);
+        _stateMachine.Animator.CrossFadeInFixedTime(DodgeBlendTreeHash, CrossFadeDuration);
+        _stateMachine.Health.SetInvulnerable(true);
     }
 
     public override void Tick(float deltaTime)
     {
         if (_dodgeCurrentDuration >= _stateMachine.DodgeDuration)
         {
-            _stateMachine.SwitchState(new PlayerTargetingState(_stateMachine));
+            ReturnToLocomotion();
             return;
         }
         else
         {
-            FaceMovementDirection();
-            Move(_stateMachine.transform.forward * _stateMachine.TargetingMovementSpeed, deltaTime);
+            Move(CalculateMovement(deltaTime), deltaTime);
+            FaceTarget();
             _dodgeCurrentDuration += deltaTime;
         }
     }
     public override void Exit()
     {
-        
+        _stateMachine.Health.SetInvulnerable(false);
     }
-    protected void FaceMovementDirection()
+    private Vector3 CalculateMovement(float deltaTime)
     {
-        _stateMachine.transform.rotation = Quaternion.LookRotation(_dodgingDirection);
+        Vector3 movement = new Vector3();
+        movement += _stateMachine.transform.right * _dodgingDirection.x * _stateMachine.DodgeDistance / _stateMachine.DodgeDuration;
+        movement += _stateMachine.transform.forward * _dodgingDirection.y * _stateMachine.DodgeDistance / _stateMachine.DodgeDuration;
+
+        return movement;
     }
 }

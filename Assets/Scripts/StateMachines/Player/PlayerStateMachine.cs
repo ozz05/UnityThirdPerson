@@ -23,18 +23,11 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public float ImpactDuration {get; private set;} = 1f;
     [field: SerializeField] public float DodgeDuration {get; private set;}
     [field: SerializeField] public float DodgeDistance {get; private set;}
-    [field: SerializeField] public float DodgeCooldownTime {get; private set;} = 2f;
-    [field: SerializeField] public float PreviousDodgeTime {get; private set;}
 
     private void OnEnable()
     {
-        PreviousDodgeTime = Time.time - DodgeCooldownTime;
         Health.OnTakeDamage += OnDamageTaken;
         Health.OnDeath += HandleDeath;
-    }
-    public void SetDodgeTime (float time)
-    {
-        PreviousDodgeTime = time;
     }
     private void OnDisable()
     {

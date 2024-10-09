@@ -46,9 +46,11 @@ public class PlayerTargetingState : PlayerBaseState
     }
     private void OnDodge()
     {
-        if (Time.time - _stateMachine.PreviousDodgeTime < _stateMachine.DodgeCooldownTime) return;
-        _stateMachine.SetDodgeTime(Time.time);
-        _stateMachine.SwitchState(new PlayerDodgingState(_stateMachine, CalculateMovement()));
+        if (_stateMachine.InputReader.MovementValue == Vector2.zero)
+        {
+            return;
+        }
+        _stateMachine.SwitchState(new PlayerDodgingState(_stateMachine, _stateMachine.InputReader.MovementValue));
     }
     private void OnCancel()
     {
