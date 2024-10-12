@@ -35,8 +35,8 @@ public class PlayerFallingState : PlayerBaseState
     }
 
     
-    private void LedgeDetected(Vector3 ledgeForward)
+    private void LedgeDetected(Vector3 ledgeForward, Vector3 closestPoint)
     {
-        _stateMachine.SwitchState(new PlayerHangingState(_stateMachine, ledgeForward));
+        _stateMachine.SwitchState(new PlayerHangingState(_stateMachine, ledgeForward, closestPoint));
     }
 }

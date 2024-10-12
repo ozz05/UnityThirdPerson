@@ -60,8 +60,6 @@ public class PlayerFreeLookState : PlayerBaseState
     }*/
     private void OnJump()
     {
-        if(!_stateMachine.CharacterController.isGrounded) return;
-        
         _stateMachine.SwitchState(new PlayerJumpingState(_stateMachine));
     }
     private void MovePlayer(Vector3 movement, float deltaTime)
