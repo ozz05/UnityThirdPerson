@@ -8,14 +8,25 @@ public class PlayerFreeLookState : PlayerBaseState
     private readonly int FreeLookBlendTreeHash = Animator.StringToHash("FreeLookBlendTree");
     private const float AnimatorDampTime = 0.1f;
     private const float CrossFadeDuration = 0.2f;
-    public PlayerFreeLookState(PlayerStateMachine playerStateMachine) : base(playerStateMachine) {}
+    private bool _shouldFade;
+    public PlayerFreeLookState(PlayerStateMachine playerStateMachine, bool shouldFade = true) : base(playerStateMachine)
+    {
+        _shouldFade = shouldFade;
+    }
 
     public override void Enter()
     {
         _stateMachine.InputReader.TargetEvent += OnTarget;
-        //_stateMachine.InputReader.DodgeEvent += OnDodge;
         _stateMachine.InputReader.JumpEvent += OnJump;
-        _stateMachine.Animator.CrossFadeInFixedTime(FreeLookBlendTreeHash, CrossFadeDuration);
+        _stateMachine.Animator.SetFloat(FreeLookHash, 0);
+        if (_shouldFade)
+        {
+            _stateMachine.Animator.CrossFadeInFixedTime(FreeLookBlendTreeHash, CrossFadeDuration);
+        }
+        else{
+            _stateMachine.Animator.Play(FreeLookBlendTreeHash);
+        }
+        
     }
     public override void Tick(float deltaTime)
     {

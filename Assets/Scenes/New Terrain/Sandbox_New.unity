@@ -1433,17 +1433,17 @@ PrefabInstance:
     - target: {fileID: 7910338781306211242, guid: d155f6ce7468dab479e9f13ed68cd679,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 93.59
+      value: 93.2
       objectReference: {fileID: 0}
     - target: {fileID: 7910338781306211242, guid: d155f6ce7468dab479e9f13ed68cd679,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 313.45
+      value: 312.67
       objectReference: {fileID: 0}
     - target: {fileID: 7910338781306211242, guid: d155f6ce7468dab479e9f13ed68cd679,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 22.67
+      value: 22.62
       objectReference: {fileID: 0}
     - target: {fileID: 7910338781306211242, guid: d155f6ce7468dab479e9f13ed68cd679,
         type: 3}
@@ -2473,6 +2473,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerRig
       objectReference: {fileID: 0}
+    - target: {fileID: 3472649353718438070, guid: 30a0fb918cab07541bb0561c864720cb,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3496139931693854291, guid: 30a0fb918cab07541bb0561c864720cb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2487,11 +2492,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ChildCameras.Array.size
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4431171312381795023, guid: 30a0fb918cab07541bb0561c864720cb,
-        type: 3}
-      propertyPath: <JumpForce>k__BackingField
-      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5756622053668885817, guid: 30a0fb918cab07541bb0561c864720cb,
         type: 3}
@@ -2960,7 +2960,7 @@ Transform:
   m_GameObject: {fileID: 1842763736}
   serializedVersion: 2
   m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 0.0042, y: -0.0022, z: -0}
+  m_LocalPosition: {x: 0.0028, y: -0.0022, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2985,8 +2985,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.08444537, y: 0.007527229, z: 0.0034975305}
-  m_Center: {x: -0.020714678, y: 0.014606595, z: -0.0033104373}
+  m_Size: {x: 0.08444537, y: 0.0050817123, z: 0.0034975305}
+  m_Center: {x: -0.020714678, y: 0.014818729, z: -0.0033104382}
 --- !u!1 &1847395011
 GameObject:
   m_ObjectHideFlags: 0
