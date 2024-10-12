@@ -14,13 +14,14 @@ public class PlayerFallingState : PlayerBaseState
         _momentum = _stateMachine.CharacterController.velocity;
         _momentum.y = 0;
         _stateMachine.Animator.CrossFadeInFixedTime(FallHash, CrossFadeDuration);
+        _stateMachine.LedgeDetector.OnLedgeDetect += LedgeDetected;
     }
 
     public override void Tick(float deltaTime)
     {
         Move(_momentum, deltaTime);
         
-        if(_stateMachine.CharacterController.isGrounded)
+        if(_stateMachine.CharacterController.isGrounded || _stateMachine.CharacterController.velocity.y == 0)
         {
             ReturnToLocomotion();
             return;
@@ -29,5 +30,13 @@ public class PlayerFallingState : PlayerBaseState
     }
     public override void Exit()
     {
+        
+        _stateMachine.LedgeDetector.OnLedgeDetect -= LedgeDetected;
+    }
+
+    
+    private void LedgeDetected(Vector3 ledgeForward)
+    {
+        _stateMachine.SwitchState(new PlayerHangingState(_stateMachine, ledgeForward));
     }
 }

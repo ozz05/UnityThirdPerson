@@ -31,7 +31,11 @@ public class ForceReceiver : MonoBehaviour
             _agent.enabled = true;
         }
     }
-
+    public void Reset()
+    {
+        _verticalVelocity = 0f;
+        _impact = Vector3.zero;
+    }
     public void AddForce(Vector3 force)
     {
         _impact += force;

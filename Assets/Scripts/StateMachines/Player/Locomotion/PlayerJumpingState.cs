@@ -13,6 +13,7 @@ public class PlayerJumpingState : PlayerBaseState
 
     public override void Enter()
     {
+        _stateMachine.LedgeDetector.OnLedgeDetect += LedgeDetected;
         _stateMachine.ForceReceiver.Jump(_stateMachine.JumpForce);
         
         _momentum = _stateMachine.CharacterController.velocity;
@@ -24,15 +25,21 @@ public class PlayerJumpingState : PlayerBaseState
     {
         Move(_momentum, deltaTime);
         
-        if(_stateMachine.CharacterController.velocity.y <= 0 && !_stateMachine.CharacterController.isGrounded)
+        if(_stateMachine.CharacterController.velocity.y <= 0)
         {
             _stateMachine.SwitchState(new PlayerFallingState(_stateMachine));
             return;
         }
         FaceTarget();
     }
+    
     public override void Exit()
     {
-        
+        _stateMachine.LedgeDetector.OnLedgeDetect -= LedgeDetected;
+    }
+    
+    private void LedgeDetected(Vector3 ledgeForward)
+    {
+        _stateMachine.SwitchState(new PlayerHangingState(_stateMachine, ledgeForward));
     }
 }
